@@ -2,6 +2,7 @@ package enrolment;
 
 public class EnrolmentResponseEntity {
 
+    
     private String courseName;
     private String term;
     private int grade;
