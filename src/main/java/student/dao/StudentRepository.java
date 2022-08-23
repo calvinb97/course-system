@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StudentRepository {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public StudentRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -59,7 +59,7 @@ public class StudentRepository {
     public Student findByIdWithCourseInformation(int id) throws StudentNotFoundException {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        Query<Student> query = session.createQuery("from Student s join fetch s.enrolments where id = :id", Student.class);
+        Query<Student> query = session.createQuery("from Student s left join fetch s.enrolments where id = :id", Student.class);
         query.setParameter("id", id);
         try {
             Student result = query.getSingleResult();

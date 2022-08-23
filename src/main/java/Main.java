@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import course.api.CourseController;
 import course.exception.CourseNotFoundException;
 import course.dao.CourseRepository;
+import spark.Filter;
 import student.dao.EnrolmentRepository;
 import student.dto.EnrolmentAddDto;
 import student.service.EnrolmentService;
@@ -35,6 +36,12 @@ public class Main {
 
         final StudentController studentController = new StudentController(studentRepository, enrolmentService);
         final CourseController courseController = new CourseController(courseRepository);
+
+        // CORS HANDLING
+        after((Filter) (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Methods", "GET");
+        });
 
         // STUDENTS
         get("/students", studentController::getAllStudents, JsonUtil.json());
