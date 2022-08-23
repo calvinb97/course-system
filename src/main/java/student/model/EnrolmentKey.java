@@ -1,4 +1,4 @@
-package enrolment;
+package student.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

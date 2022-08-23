@@ -1,10 +1,11 @@
-package student;
+package student.dao;
 
-import enrolment.Enrolment;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import student.exception.StudentNotFoundException;
+import student.model.Student;
 
 import javax.persistence.NoResultException;
 import java.util.List;
@@ -46,10 +47,6 @@ public class StudentRepository {
         query.setParameter("id", id);
         try {
             Student result = query.getSingleResult();
-            // TODO resolve workaround for lazy loading
-            for (Enrolment enrolment : result.getEnrolments()){
-                enrolment.getCourse();
-            }
             tx.commit();
             return result;
         } catch (NoResultException e){
@@ -57,6 +54,21 @@ public class StudentRepository {
         } finally {
             session.close();
         }
+    }
 
+    public Student findByIdWithCourseInformation(int id) throws StudentNotFoundException {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        Query<Student> query = session.createQuery("from Student s join fetch s.enrolments where id = :id", Student.class);
+        query.setParameter("id", id);
+        try {
+            Student result = query.getSingleResult();
+            tx.commit();
+            return result;
+        } catch (NoResultException e){
+            throw new StudentNotFoundException();
+        } finally {
+            session.close();
+        }
     }
 }

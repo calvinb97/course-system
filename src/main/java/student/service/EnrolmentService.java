@@ -1,11 +1,14 @@
-package enrolment;
+package student.service;
 
-import course.Course;
-import course.CourseNotFoundException;
-import course.CourseRepository;
-import student.Student;
-import student.StudentNotFoundException;
-import student.StudentRepository;
+import course.model.Course;
+import course.exception.CourseNotFoundException;
+import course.dao.CourseRepository;
+import student.dao.EnrolmentRepository;
+import student.dao.StudentRepository;
+import student.model.*;
+import student.exception.StudentNotFoundException;
+
+import java.util.List;
 
 public class EnrolmentService {
 
@@ -19,6 +22,11 @@ public class EnrolmentService {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.enrolmentRepository = enrolmentRepository;
+    }
+
+    public List<Enrolment> getEnrolmentsForStudentWithCourseInformation(int id) throws StudentNotFoundException {
+        Student student = studentRepository.findByIdWithCourseInformation(id);
+        return student.getEnrolments();
     }
 
     public Enrolment addCourseToStudent(int studentId, int courseId)

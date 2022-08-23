@@ -1,17 +1,25 @@
-package student;
+package student.dto;
 
-public class StudentResponseEntity {
+import student.model.Student;
+
+public class StudentBaseDto {
     private int id;
     private String lastName;
     private String firstName;
 
-    public StudentResponseEntity() {
+    public StudentBaseDto() {
     }
 
-    public StudentResponseEntity(int id, String lastName, String firstName) {
+    public StudentBaseDto(int id, String lastName, String firstName) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
+    }
+
+    public StudentBaseDto(Student student){
+        this.id = student.getId();
+        this.lastName = student.getLastName();
+        this.firstName = student.getFirstName();
     }
 
     public int getId() {

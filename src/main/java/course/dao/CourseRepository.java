@@ -1,5 +1,7 @@
-package course;
+package course.dao;
 
+import course.exception.CourseNotFoundException;
+import course.model.Course;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

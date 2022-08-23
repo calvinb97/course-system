@@ -33,9 +33,9 @@
 
 
         <!-- Names the annotated entity class -->
-        <mapping class="student.Student" />
-        <mapping class="course.Course" />
-        <mapping class="enrolment.Enrolment" />
+        <mapping class="student.model.Student" />
+        <mapping class="course.model.Course" />
+        <mapping class="student.model.Enrolment" />
 
     </session-factory>
 

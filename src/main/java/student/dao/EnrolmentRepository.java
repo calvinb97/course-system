@@ -1,9 +1,9 @@
-package enrolment;
+package student.dao;
 
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import student.model.Enrolment;
 
 public class EnrolmentRepository {
 

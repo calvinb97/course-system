@@ -1,6 +1,5 @@
-package student;
+package student.model;
 
-import enrolment.Enrolment;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 

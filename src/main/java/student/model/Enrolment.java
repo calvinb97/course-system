@@ -1,7 +1,6 @@
-package enrolment;
+package student.model;
 
-import course.Course;
-import student.Student;
+import course.model.Course;
 
 import javax.persistence.*;
 

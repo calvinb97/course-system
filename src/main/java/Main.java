@@ -1,17 +1,15 @@
 import com.google.gson.Gson;
-import course.Course;
-import course.CourseController;
-import course.CourseNotFoundException;
-import course.CourseRepository;
-import enrolment.Enrolment;
-import enrolment.EnrolmentApiModel;
-import enrolment.EnrolmentRepository;
-import enrolment.EnrolmentService;
+import course.api.CourseController;
+import course.exception.CourseNotFoundException;
+import course.dao.CourseRepository;
+import student.dao.EnrolmentRepository;
+import student.dto.EnrolmentAddDto;
+import student.service.EnrolmentService;
 import org.hibernate.SessionFactory;
-import student.Student;
-import student.StudentController;
-import student.StudentNotFoundException;
-import student.StudentRepository;
+import student.model.Student;
+import student.api.StudentController;
+import student.exception.StudentNotFoundException;
+import student.dao.StudentRepository;
 import util.ContextProvider;
 import util.JsonUtil;
 
@@ -65,7 +63,7 @@ public class Main {
         post("students/:id/enrolments", (req, res) -> {
             try{
                 int id = Integer.parseInt(req.params("id"));
-                EnrolmentApiModel enrolmentRequest = new Gson().fromJson(req.body(), EnrolmentApiModel.class);
+                EnrolmentAddDto enrolmentRequest = new Gson().fromJson(req.body(), EnrolmentAddDto.class);
                 return studentController.addEnrolment(req, res, id, enrolmentRequest);
             } catch (StudentNotFoundException e){
                 return "Student nicht gefunden.";

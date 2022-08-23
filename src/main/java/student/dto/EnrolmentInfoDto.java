@@ -1,24 +1,24 @@
-package dto;
+package student.dto;
 
-import enrolment.Enrolment;
+import student.model.Enrolment;
 
-public class EnrolmentInformation {
+public class EnrolmentInfoDto {
     private int studentId;
     private String courseName;
     private String term;
     private int grade;
 
-    public EnrolmentInformation() {
+    public EnrolmentInfoDto() {
     }
 
-    public EnrolmentInformation(Enrolment enrolment){
+    public EnrolmentInfoDto(Enrolment enrolment){
         this.studentId = enrolment.getStudent().getId();
         this.courseName = enrolment.getCourse().getCourseName();
         this.term = enrolment.getCourse().getTerm();
         this.grade = enrolment.getGrade();
     }
 
-    public EnrolmentInformation(int studentId, String courseName, int grade) {
+    public EnrolmentInfoDto(int studentId, String courseName, int grade) {
         this.studentId = studentId;
         this.courseName = courseName;
         this.grade = grade;

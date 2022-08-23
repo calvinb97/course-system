@@ -1,18 +1,15 @@
-package enrolment;
+package student.dto;
 
-public class EnrolmentApiModel {
-
+public class EnrolmentAddDto {
     private int studentId;
     private int courseId;
-    private int grade;
 
-    public EnrolmentApiModel() {
+    public EnrolmentAddDto() {
     }
 
-    public EnrolmentApiModel(int studentId, int courseId, int grade) {
+    public EnrolmentAddDto(int studentId, int courseId) {
         this.studentId = studentId;
         this.courseId = courseId;
-        this.grade = grade;
     }
 
     public int getStudentId() {
@@ -29,13 +26,5 @@ public class EnrolmentApiModel {
 
     public void setCourseId(int courseId) {
         this.courseId = courseId;
-    }
-
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
     }
 }
